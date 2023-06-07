@@ -1,8 +1,4 @@
 import React, { Component, useState } from "react";
-import {
-  FacebookLoginButton,
-  InstagramLoginButton
-} from "react-social-login-buttons";
 import '../../src/App.css'
 import Loader from "./Loader";
 import { Outlet, Link } from "react-router-dom";
@@ -118,15 +114,6 @@ const SignInForm = ({ setSignIn, setLogin, setIsAdmin, setUser, setPendingPL, se
               {loader ? (<Loader />) : ""}
             </div>
 
-            <div className="socialMediaButtons">
-              <div className="facebookButton">
-                <FacebookLoginButton onClick={() => window.location.href = 'https://www.facebook.com/'} />
-              </div>
-
-              <div className="instagramButton">
-                <InstagramLoginButton onClick={() => window.location.href = 'https://www.instagram.com/'} />
-              </div>
-            </div>
           </form>
           <div className="flex justify-center items-center mt-8">
           <Link to="/user">
