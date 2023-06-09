@@ -3,20 +3,20 @@ import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import locationPin from './locationPin.png';
 
 const MapForUser = ({ setMarkerPosition, setShowMap, markerPosition,allPL,setPlData }) => {
-  // const [markerPosition, setMarkerPosition] = useState();
+  // const [markerPosition, setMarkerPosition] = useState([]);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: 'AIzaSyDeosvjuXnbDOLK0qsW-vBgqUoHIcRCkhY',
   });
 
   const handleMapClick = (event) => {
-    // const { latLng } = event;
-    // setMarkerPosition({
-    //   lat: latLng.lat(),
-    //   lng: latLng.lng(),
-    // });locationPin.png
-    // console.log(markerPosition.lat)
-    // console.log(markerPosition.lng)
+    const { latLng } = event;
+    setMarkerPosition({
+      lat: latLng.lat(),
+      lng: latLng.lng(),
+    });
+    console.log(markerPosition.lat)
+    console.log(markerPosition.lng)
   };
   const [selectedMarker, setSelectedMarker] = useState(null);
   const handleClick =(e)=>{
