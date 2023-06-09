@@ -15,7 +15,7 @@ const SignUpForm = ({ setSignIn, setLogin, setUser }) => {
   const [errmsg, setErrmsg] = useState();
 
   const handleChange = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     setInfo((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
   };
 

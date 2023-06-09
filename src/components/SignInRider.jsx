@@ -1,16 +1,18 @@
 import React, { Component, useState } from "react";
 import '../../src/App.css'
 import Loader from "./Loader";
-import { Outlet, Link ,useNavigate} from "react-router-dom";
-// import { useHistory } from 'react-router-dom';
+import { Outlet, Link } from "react-router-dom";
 
 const url = 'http://localhost:8000/api/auth/login';
-const SignInForm = ({ setSignIn, setLogin, setIsAdmin, setUser, setPendingPL, setAllPL,allPL }) => {
+const SignInRider = ({ setSignIn, setLogin, setIsAdmin, setUser, setPendingPL, setAllPL,allPL }) => {
 
   const [info, setInfo] = useState({ email: '', password: '' });
   const [errmsg, setErrmsg] = useState();
   const [loader, setLoader] = useState(false);
-  const navigateTo = useNavigate();
+
+  const [login, setLogin] = useState(false);
+  const [signIn, setSignIn] = useState(true);
+
   const handleChange = (e) => {
     // console.log(localStorage.getItem('token'))
     setInfo((prevState) => ({ ...prevState, [e.target.name]: e.target.value }))
@@ -38,18 +40,14 @@ const SignInForm = ({ setSignIn, setLogin, setIsAdmin, setUser, setPendingPL, se
       localStorage.setItem('token', data.authToken)
       if (data.Admin != undefined) {
         setPendingPL(data.allParkingLots)
-        console.log(data).allParkingLots;
-
+        console.log(data);
         setUser("Admin");
         setIsAdmin(true);
       }
       else {
         setAllPL(data.allParkingLots);
-        console.log(data.userType);
         console.log(data);
         setUser(data.name);
-        if(data.userType=='rider')
-        navigateTo('/user')
       }
     } catch (error) {
       console.log(error);
@@ -136,4 +134,4 @@ const SignInForm = ({ setSignIn, setLogin, setIsAdmin, setUser, setPendingPL, se
   );
 }
 
-export default SignInForm;
+export default SignInRider;

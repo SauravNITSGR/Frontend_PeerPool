@@ -13,7 +13,7 @@ const Index1 = () => {
   return (
     <div className="min-h-screen" >
           {!login ? (signIn ?
-            <SignInForm setSignIn={setSignIn} setLogin={setLogin} setIsAdmin={setIsAdmin} setUser={setUser} setPendingPL={setPendingPL} setAllPL={setAllPL} /> :
+            <SignInForm setSignIn={setSignIn} setLogin={setLogin} setIsAdmin={setIsAdmin} setUser={setUser} setPendingPL={setPendingPL} setAllPL={setAllPL} allPL={allPL}/> :
             <SignUpForm setSignIn={setSignIn} setLogin={setLogin} setUser={setUser} />
 
           ) : ""}
