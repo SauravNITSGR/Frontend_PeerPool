@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../images/parkingLogo.png";
+import logo from "../../images/peerpoolLogo.png";
 
 const Footer = () => (
   <div className="w-full flex md:justify-center justify-between items-center flex-col p-4 gradient-bg-footer">
