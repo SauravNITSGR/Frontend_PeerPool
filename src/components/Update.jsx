@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { IoIosCloseCircle } from 'react-icons/io';
 import { Loader } from ".";
 
-const url = 'http://localhost:8000/api/ParkingLot/updateParkingLot';
+const url = 'http://localhost:8000/api/ParkingLot/updateDriver';
 
 const Update = ({ setShowUpdate, parkingLot,setHide }) => {
   const [ParkingLot, setParkingLot] = useState(parkingLot);
@@ -57,10 +57,10 @@ const Update = ({ setShowUpdate, parkingLot,setHide }) => {
       <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
         <input className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism" value={ParkingLot.Name} placeholder="Parking Lot Name" name="Name" type="text" onChange={onChange} />
         <input className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism" value={ParkingLot.WalletAddress} placeholder="Your Wallet Address" name="WalletAddress" type="text" onChange={onChange} />
-        <input className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism" value={ParkingLot.Fee} placeholder="Fee/hour (ETH)" name="Fee" type="number" onChange={onChange} />
+        <input className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism" value={ParkingLot.Fee} placeholder="Fee/kilometer (ETH)" name="Fee" type="number" onChange={onChange} />
         <input className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism" value={ParkingLot.TotalSlots} placeholder="Total Slots" name="TotalSlots" type="number" onChange={onChange} />
-        <input className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism" value={ParkingLot.Lattitude} placeholder="Lattitude" name="Lattitude" type="number" onChange={onChange} />
-        <input className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism" value={ParkingLot.Longitude} placeholder="Longitude" name="Longitude" type="number" onChange={onChange} />
+        {/* <input className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism" value={ParkingLot.Lattitude} placeholder="Lattitude" name="Lattitude" type="number" onChange={onChange} />
+        <input className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism" value={ParkingLot.Longitude} placeholder="Longitude" name="Longitude" type="number" onChange={onChange} /> */}
 
         <div className="h-[1px] w-full bg-gray-400 my-2" />
 
