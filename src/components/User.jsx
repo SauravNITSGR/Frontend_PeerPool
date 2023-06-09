@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import MapForUser from './MapForUser'
+import MapComponent from './MapComponent';
 import ParkingLot from './ParkingLot'
 const url = 'http://localhost:8000/api/ParkingLot/fetchAllParkingLots_admin';
 
 const User = () => {
-  const [markerPosition, setMarkerPosition] = useState();
+  const [markerPosition, setMarkerPosition] = useState({ lat: 34.126405, lng: 74.835872 });
   const [showMap, setShowMap] = useState(true);
   const [allPL,setAllPL]=useState();
   const [plData, setPlData] = useState();
@@ -12,8 +12,8 @@ const User = () => {
 
   const handleClick =()=>{
     navigator.geolocation.getCurrentPosition(function(position) {
-      // console.log("Latitude is :", position.coords.latitude);
-      // console.log("Longitude is :", position.coords.longitude);
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
       setMarkerPosition({lat:position.coords.latitude,lng:position.coords.longitude})
     });
 
@@ -39,7 +39,7 @@ const User = () => {
   return (
     <div className='gradient-bg-welcome flex justify-center flex-col px-20 font-bold' >
       {showMap &&
-        <MapForUser setMarkerPosition={setMarkerPosition} setShowMap={setShowMap} markerPosition={markerPosition} allPL={allPL} setPlData={setPlData} />
+        <MapComponent setMarkerPosition={setMarkerPosition} setShowMap={setShowMap} markerPosition={markerPosition} />
       }
       <div className='flex justify-center mt-10 mb-10'>
 
