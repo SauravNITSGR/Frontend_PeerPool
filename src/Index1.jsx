@@ -20,7 +20,7 @@ const Index1 = () => {
           <div className="gradient-bg-welcome" style={!login ? { filter: 'blur(4px)', pointerEvents: 'none', userSelect: 'none' } : {}}>
             <div>
               <Navbar user={user} setLogin={setLogin} setUser={setUser} setIsAdmin={setIsAdmin} />
-              <Welcome />
+              <Welcome allPL={allPL}/>
             </div>
             <Services />
             {!isAdmin ? (<ParkingLotsProvider allPL={allPL} />) : (<PendingPL pendingPL={pendingPL} setPendingPL={setPendingPL} />)}
