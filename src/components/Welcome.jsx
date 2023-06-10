@@ -21,7 +21,7 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
   />
 );
 
-const Welcome = () => {
+const Welcome = ({allPL}) => {
   const { currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading } = useContext(ParkingProviderContext);
 
   const handleSubmit = (e) => {
@@ -39,10 +39,10 @@ const Welcome = () => {
       <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
         <div className="flex flex-1 justify-start items-start flex-col mf:mr-10">
           <h1 className="text-3xl sm:text-4xl text-white text-gradient py-1">
-            Create Account and<br />become Parking Provider 
+            Create Account and<br />add your details to become a Driver 
           </h1>
           <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">
-            Renting your unused land for parking has became easy now. Start your Earning from today. 
+            Now you can earn by directly connecting to rider. 
           </p>
           {!currentAccount && (
             <button
@@ -94,7 +94,7 @@ const Welcome = () => {
               </div>
             </div>
           </div>
-          <CreatePL />
+          <CreatePL allPL={allPL} />
         </div>
       </div>
     </div>

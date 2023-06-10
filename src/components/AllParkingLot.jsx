@@ -1,11 +1,10 @@
 import React, { useState, useRef } from "react";
 import "./AllParkingLot.css";
-import logo from '../../images/parkingLogo.png'
 import { FiEdit } from 'react-icons/fi'
 import { MdOutlineDeleteOutline } from 'react-icons/md'
 import './AllParkingLot.css';
 
-const url = 'http://localhost:8000/api/ParkingLot/deleteParkingLot';
+const url = 'http://localhost:8000/api/ParkingLot/deleteDriver';
 
 const DeletePL = ({ setDeleteClick , parkingLot}) => {
   const handleClick = async(e) => {
