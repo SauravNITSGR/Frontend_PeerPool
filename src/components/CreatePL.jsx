@@ -1,8 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Loader } from ".";
 import MapComponent from "./MapComponent";
+import { ParkingProviderContext } from "../context/ParkingProviderContext";
 
 const url = "http://localhost:8000/api/ParkingLot/createDriver";
+
 const CreatePL = ({ allPL }) => {
   const [msg, setMsg] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -11,6 +13,9 @@ const CreatePL = ({ allPL }) => {
     lng: 74.835872,
   });
   const [showMap, setShowMap] = useState(false);
+  const { currentAccount, connectWallet, handleChange, sendTransaction, formData } = useContext(ParkingProviderContext);
+
+
   console.log(allPL.length);
   const defaultValue = {
     Name: "",
@@ -27,33 +32,38 @@ const CreatePL = ({ allPL }) => {
   }, [msg]);
 
   const handleSubmit = async (e) => {
-    console.log(ParkingLot);
-    e.preventDefault();
     setIsLoading(true);
-    const token = localStorage.getItem("token");
-    console.log(token);
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          "auth-token": token,
-        },
-        // Adding body or contents to send
-        body: JSON.stringify(ParkingLot),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setMsg("Success");
-      } else {
-        setMsg(`Error :  ${data.Error}`);
+    console.log(ParkingLot);
+    const valid = sendTransaction(ParkingLot);
+    setIsLoading(false)
+    e.preventDefault();
+    // return;
+    if (valid) {
+      const token = localStorage.getItem("token");
+      console.log(token);
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            "auth-token": token,
+          },
+          // Adding body or contents to send
+          body: JSON.stringify(ParkingLot),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setMsg("Success");
+        } else {
+          setMsg(`Error :  ${data.Error}`);
+        }
+        setParkingLot(defaultValue);
+        console.log(data);
+        setIsLoading(false);
+      } catch {
+        setMsg("Something went wrong. Please try again.");
+        setIsLoading(false);
       }
-      setParkingLot(defaultValue);
-      console.log(data);
-      setIsLoading(false);
-    } catch {
-      setMsg("Something went wrong. Please try again.");
-      setIsLoading(false);
     }
   };
 
@@ -112,7 +122,7 @@ const CreatePL = ({ allPL }) => {
             disabled={allPL.length}
             type="button"
             onClick={handleSubmit}
-            className={allPL.length!==0?"text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full disabled:opacity-25":"text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"}
+            className={allPL.length !== 0 ? "text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full disabled:opacity-25" : "text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"}
           >
             Create Driver
           </button>
