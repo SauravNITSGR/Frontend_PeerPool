@@ -102,12 +102,12 @@ export const TransactionsUserProvider = ({ children }) => {
   };
 
   const sendTransaction = async (pl) => {
+    // To do Price mapping and replace pl.Fee with price
     console.log(pl)
-    pl.WalletAddress="0xA8A83a9F2C85f6D00C905b13B88640F323587a73";
     try {
       if (ethereum) {
         const transactionsContract = createEthereumContract();
-        const parsedAmount = ethers.utils.parseEther("0.1");
+        const parsedAmount = ethers.utils.parseEther(((0.0000066*2).toString()).substring(0,8));
         console.log(parsedAmount._hex)
 
         await ethereum.request({
@@ -128,10 +128,11 @@ export const TransactionsUserProvider = ({ children }) => {
         console.log(`Success - ${transactionHash.hash}`);
         setIsLoading(false);
 
-        const transactionsCount = await transactionsContract.getTransactionCount();
+        // const transactionsCount = await transactionsContract.getTransactionCount();
 
-        setTransactionCount(transactionsCount.toNumber());
-        window.location.reload();
+        // setTransactionCount(transactionsCount.toNumber());
+        // window.location.reload();
+        return true;
       } else {
         console.log("No ethereum object");
       }

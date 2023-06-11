@@ -93,7 +93,6 @@ export const ParkingLotProvider = ({ children }) => {
       const accounts = await ethereum.request({ method: "eth_requestAccounts", });
 
       setCurrentAccount(accounts[0]);
-      window.location.reload();
     } catch (error) {
       console.log(error);
 
@@ -101,35 +100,29 @@ export const ParkingLotProvider = ({ children }) => {
     }
   };
 
-  const sendTransaction = async () => {
+  const sendTransaction = async (driver) => {
     try {
       if (ethereum) {
         const { addressTo, amount, keyword, message } = formData;
         const transactionsContract = createEthereumContract();
-        const parsedAmount = ethers.utils.parseEther(amount);
 
-        // await ethereum.request({
-        //   method: "eth_sendTransaction",
-        //   params: [{
-        //     from: currentAccount,
-        //     to: addressTo,
-        //     gas: "0x5208",
-        //     value: parsedAmount._hex,
-        //   }],
-        // });
-
-        const transactionHash = await transactionsContract.createParkingLot();
+        console.log(driver);
+        const email=localStorage.getItem('email');
+        console.log(email);
+        const transactionHash = await transactionsContract.createDriver(email,driver.WalletAddress,driver.Name,driver.VehicleType);
 
         setIsLoading(true);
         console.log(`Loading - ${transactionHash.hash}`);
-        await transactionHash.wait();
+        const success=await transactionHash.wait();
         console.log(`Success - ${transactionHash.hash}`);
         setIsLoading(false);
+        // if(success.hash)
+        return true;
 
-        const transactionsCount = await transactionsContract.getTotalParkingLots();
+        // const transactionsCount = await transactionsContract.getTotalParkingLots();
 
-        setTransactionCount(transactionsCount.toNumber());
-        window.location.reload();
+        // setTransactionCount(transactionsCount.toNumber());
+        // window.location.reload();
       } else {
         console.log("No ethereum object");
       }

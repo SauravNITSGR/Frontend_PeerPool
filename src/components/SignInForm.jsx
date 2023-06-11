@@ -20,6 +20,7 @@ const SignInForm = ({ setSignIn, setLogin, setIsAdmin, setUser, setPendingPL, se
     e.preventDefault();
     setLoader(true);
     // console.log(info);
+    localStorage.setItem('email',info.email)
     try {
       const response = await fetch(url, {
         method: "POST",
