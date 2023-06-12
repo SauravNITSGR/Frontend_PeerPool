@@ -65,15 +65,15 @@ export default function Card({ parkingLot, setShowUpdate, setParkingLot, setHide
 
         <div className="flex p-4">
           <div className="box1" >
-            <span>Fee  </span>
-            <span>Total Slots  </span>
+            {/* <span>Fee  </span>
+            <span>Total Slots  </span> */}
             <span> Wallet Address  </span>
           </div>
           <div className="box2" >
-            <span> : {parkingLot.Fee}</span>
-            <span> : {parkingLot.TotalSlots}</span>
+            {/* <span> : {parkingLot.Fee}</span>
+            <span> : {parkingLot.TotalSlots}</span> */}
             <span> : {parkingLot.WalletAddress}</span>
-          </div>
+          </div> 
         </div>
 
         <div className="flex justify-around w-[80%]">
